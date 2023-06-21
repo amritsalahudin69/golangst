@@ -17,7 +17,7 @@ type WarungWaralabaSuryaAbadi struct {
 type MenuWarung struct {
 	namaMasakan string
 	harga       float32
-	isActive    bool
+	tersedia    bool
 }
 
 type HrEmp struct {
@@ -57,5 +57,28 @@ func main() {
 			},
 		},
 	}
+	listabsen1 := make([]Absen, 0)
+	listabsen1 = append(listabsen1, Absen{
+		dateAbsen: time.December,
+		timein:    time.Now(),
+		timeout:   time.Now().Add(time.Hour * 6),
+	})
+	warungAmri.karyawan.listabsen = listabsen1
+
+	MenuWarungs := make([]MenuWarung, 0)
+	MenuWarungs = append(MenuWarungs, MenuWarung{
+		namaMasakan: "Rendang",
+		harga:       10000,
+		tersedia:    true,
+	})
+	MenuWarungs = append(MenuWarungs, MenuWarung{
+		namaMasakan: "Ayam KiEfci",
+		harga:       5000,
+		tersedia:    true,
+	})
+	warungAmri.menu = MenuWarungs
 	fmt.Println("data 1: ", warungAmri)
+	fmt.Println("data 1: ", warungAmri.karyawan.detailKaryawan)
+	fmt.Println("data 1: ", warungAmri.karyawan.listabsen)
+	fmt.Println("data 1: ", warungAmri.menu)
 }
