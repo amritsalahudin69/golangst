@@ -8,7 +8,7 @@ func main() {
 
 	for baris := 1; baris <= X; baris++ {
 		for kolom := X; kolom >= baris; kolom-- {
-			fmt.Print(" ")
+			fmt.Print("_")
 		}
 		for sisi := 1; sisi <= baris; sisi++ {
 			fmt.Print("* ")
