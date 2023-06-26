@@ -17,10 +17,6 @@ type Item struct {
 	price int
 }
 
-type ItemData struct {
-	Items []*Item `json:"items"`
-}
-
 func NewProduct(productName string, descProduct string, price int) *Product {
 	return &Product{
 		name:        productName,
@@ -30,8 +26,15 @@ func NewProduct(productName string, descProduct string, price int) *Product {
 }
 
 func (p *Product) AddItems() *Product {
+	//var ItemData struct {
+	//	Items []*Item `json:"items"`
+	//}
 
 	return p
+}
+
+type ItemData struct {
+	Items []*Item `json:"items"`
 }
 
 func (p *Product) GetName() string {
