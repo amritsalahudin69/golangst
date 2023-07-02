@@ -1,0 +1,12 @@
+//json itu adalah sebuah object
+object = nama, tangan, baju
+{
+    items :[
+        {
+            name : CCA,
+            price : pond
+        }
+    ]
+}
+
+[...]

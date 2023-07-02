@@ -21,10 +21,6 @@ type Author struct {
 	UserName       string `json:"userName"`
 }
 
-func (article *Article) AddAuthorArticle(author *Author) {
-	article.Author = author
-}
-
 type Game struct {
 	ID       uint      `json:"id"`
 	Name     string    `json:"name"`
@@ -73,6 +69,10 @@ type Meta struct {
 
 func (article *Article) AddIdArticle(id uint) {
 	article.ArticleID = id
+}
+
+func (article *Article) AddAuthorArticle(author *Author) {
+	article.Author = author
 }
 
 func (article *Article) AddImageArticle(image *ImageArticle) {
