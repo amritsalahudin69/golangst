@@ -29,81 +29,43 @@ func (p *PesananCustomer) AddTglKeberangkatan() time.Time {
 	return p.TglKeberangkatan
 }
 
-func (p *PesananCustomer) AddTglPemesanan(TglPemesanan *time.Time) {
+func (p *PesananCustomer) AddTglPemesanan() time.Time {
+	return p.TglPemesanan
+}
+
+func main() {
 	var TglPesan time.Time
 	TglPesan = time.Now()
+
 	XX := TglPesan.Format("2006-01-02 15:04:05")
+	TglB := TglPesan.AddDate(0, 0, 7)
+	TglBerangkat := TglB.Format("2006-01-02")
+	JamB := TglB.Add(10 * time.Hour)
+
+	JamBerangkat := fmt.Sprintf("%02d", JamB.Hour())
+	MenitBerangkat := fmt.Sprintf("%02d", JamB.Minute())
+	DetikBerangkat := fmt.Sprintf("%02d", JamB.Second())
+	JamKeberangkatan := JamBerangkat + ":" + MenitBerangkat + ":" + DetikBerangkat
+
 	TglPesanParsed, err := time.Parse("2006-01-02 15:04:05", XX)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
+
 	TahunPesan := TglPesanParsed.Format("2006")
 	BulanPesan := TglPesanParsed.Format("01")
 	TanggalPesan := TglPesanParsed.Format("02")
-	TglPemesanan = TahunPesan + ":" + BulanPesan + ":" + TanggalPesan
-	return p.TglPemesanan
-}
-func main() {
-	//var TglPesan time.Time
-	//TglPesan = time.Now()
+	Tglpesanan := TahunPesan + ":" + BulanPesan + ":" + TanggalPesan
+	JamPesan := fmt.Sprintf("%02d", TglPesanParsed.Hour())
+	MenitPesan := fmt.Sprintf("%02d", TglPesanParsed.Minute())
+	Detik := fmt.Sprintf("%02d", TglPesanParsed.Second())
+	JamPesanan := JamPesan + ":" + MenitPesan + ":" + Detik
 
-	//XX := TglPesan.Format("2006-01-02 15:04:05")
-	//TglBerangkat := TglPesan.AddDate(0, 0, 7)
+	TiketPesawat := PesananCustomer{"Emprit Airlines", "Jepara", "Yogyakarta", TglB, TglPesan}
 
-	//TglPesanParsed, err := time.Parse("2006-01-02 15:04:05", XX)
-	//if err != nil {
-	//	fmt.Println("Error:", err)
-	//	return
-	//}
+	fmt.Printf("Tiket Tujuan Kota %s menuju Kota %s pada tanggal %s pukul %s \n", TiketPesawat.AddKotaBerangkat(), TiketPesawat.AddKotaTujuan(), TglBerangkat, JamKeberangkatan)
 
-	//TglBerangkatX, err := time.Parse("2006-01-02 15:04:05", TglBerangkat)
-	//if err != nil {
-	//	fmt.Println("Error:", err)
-	//	return
-	//}
-	//TglPesanString := TglPesanParsed.Format("2006-01-02 15:04:05")
-
-	TiketPesawat := PesananCustomer{"Emprit Airlines", "Jepara", "Yogyakarta", TglBerangkat, TglPesan}
-
-	fmt.Println("TglPesanString:", TiketPesawat)
-	fmt.Println("TglPesanString:", TglPesanParsed)
-
-	fmt.Printf("Tiket Tujuan Kota %s menuju Kota %s pada tanggal %s pukul %s \n", TiketPesawat.AddKotaBerangkat(), TiketPesawat.AddKotaTujuan(), TiketPesawat.AddTglKeberangkatan(), JamBerangkatGabung)
-
-	//fmt.Printf("Tiket ini dipesan pada tanggal %s pukul %s", TglGabung, JamPesanGabung)
-
-	//VxTime := time.Now()
-	//VxTimeFormat := VxTime.Format("2006-01-02 15:04:05")
-	//VxTimeParsed, err := time.Parse("2006-01-02 15:04:05", VxTimeFormat)
-	//
-	//if err != nil {
-	//	fmt.Println("Error:", err)
-	//	return
-	//}
-	////Date Time Pemesanan
-	//TahunPesan := VxTimeParsed.Format("2006")
-	//BulanPesan := VxTimeParsed.Format("01")
-	//TanggalPesan := VxTimeParsed.Format("02")
-	//TglGabung := TahunPesan + ":" + BulanPesan + ":" + TanggalPesan
-	////fmt.Println(TglGabung)
-	//
-	//JamPesan := fmt.Sprintf("%02d", VxTimeParsed.Hour())
-	//MenitPesan := fmt.Sprintf("%02d", VxTimeParsed.Minute())
-	//Detik := fmt.Sprintf("%02d", VxTimeParsed.Second())
-	//JamPesanGabung := JamPesan + ":" + MenitPesan + ":" + Detik
-	//
-	////Date Time Pemesanan
-	//
-	////Date Time Berangkat
-	//VdTime := VxTimeParsed.AddDate(0, 0, 7)
-	//VdJam := VdTime.Add(10 * time.Hour)
-	//
-	//JamBerangkat := fmt.Sprintf("%02d", VdJam.Hour())
-	//MenitBerangkat := fmt.Sprintf("%02d", VdJam.Minute())
-	//DetikBerangkat := fmt.Sprintf("%02d", VdJam.Second())
-	//JamBerangkatGabung := JamBerangkat + ":" + MenitBerangkat + ":" + DetikBerangkat
-
-	//Date Time Berangkat
+	fmt.Printf("Tiket ini dipesan pada tanggal %s pukul %s", Tglpesanan, JamPesanan)
 
 }
