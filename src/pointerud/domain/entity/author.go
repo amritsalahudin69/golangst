@@ -21,3 +21,5 @@ func (p *Author) AddListArticle(articles []*Article) *Author {
 func (p *Author) GetName() string {
 	return p.name
 }
+
+//Tabah Salahudin Amri-QUIZ2_30062023

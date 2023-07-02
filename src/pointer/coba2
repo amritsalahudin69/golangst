@@ -72,3 +72,24 @@ func main() {
 	}
 
 }
+
+
+func NewNamaCust(NewNamaCust string, NewKtp string) *NamaCust {
+	return &NamaCust{
+		Nama: NewNamaCust,
+		Ktp:  NewKtp,
+	}
+}
+
+func (n *NamaCust) getNama() string {
+	return n.Nama
+}
+
+func (n *NamaCust) getKtp() string {
+	return n.Ktp
+}
+
+func (n *NamaCust) getPesanan() *Order {
+	return n.Pesanan
+}
+

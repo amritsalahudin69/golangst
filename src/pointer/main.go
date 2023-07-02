@@ -5,7 +5,6 @@ import (
 	"fmt"
 )
 
-// buat struct Product dahulu
 type Product struct {
 	name        string
 	description string
@@ -33,13 +32,13 @@ func (p *Product) GetStartPrice() int {
 	return p.startPrice
 }
 
+type ItemData struct {
+	Items []*Item `json:"items"`
+}
+
 type Item struct {
 	Name  string `json:"name"`
 	Price int    `json:"price"`
-}
-
-type ItemData struct {
-	Items []*Item `json:"items"`
 }
 
 func (it *Item) GetItemName() string {
@@ -62,6 +61,8 @@ func (p *Product) GetItems() []*Item {
 }
 
 func main() {
+	productML := NewProduct("Mobile Legends", "Game Moba - Moontoon", 1000)
+
 	items := "{\"items\":[{\"name\":\"33 Diamond\",\"price\":3000},{\"name\":\"73 Diamond\",\"price\":20000}]}"
 
 	itemN := new(ItemData)
@@ -69,14 +70,17 @@ func main() {
 	itemJson := json.Unmarshal([]byte(items), itemN)
 	if itemJson != nil {
 		fmt.Println(itemJson)
+		//datau logic lain
 	}
-
-	productML := NewProduct("Mobile Legends", "Game Moba - Moontoon", 1000)
 
 	productML.AddItems(itemN.Items)
 
+	// for _, muncul := range productML.items {
+	// 	fmt.Printf(productML.GetName(), productML.GetDesc(), productML.GetStartPrice(), muncul.GetItemName(), muncul.GetItemPrice())
+	// }
+
 	for _, muncul := range productML.items {
-		fmt.Printf("Name Game : %s - Descript Product: %s - Price Product: %d \n Product Items Name : %s \n Product Items Price : %d", productML.GetName(), productML.GetDesc(), productML.GetStartPrice(), muncul.GetItemName(), muncul.GetItemPrice())
+		fmt.Printf("Name Game : %s - Descript Product: %s - Price Product: %d \n Product Items Name : %s \n Product Items Price : %d \n", productML.GetName(), productML.GetDesc(), productML.GetStartPrice(), muncul.GetItemName(), muncul.GetItemPrice())
 	}
 
 }
