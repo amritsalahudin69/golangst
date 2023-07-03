@@ -9,7 +9,7 @@ type PesananCustomer struct {
 	NamaPenerbangan  string
 	KotaBerangkat    string
 	KotaTujuan       string
-	TglKeberangkatan time.Time
+	TglKeberangkatan string
 	TglPemesanan     time.Time
 }
 
@@ -25,7 +25,7 @@ func (p *PesananCustomer) AddKotaTujuan() string {
 	return p.KotaTujuan
 }
 
-func (p *PesananCustomer) AddTglKeberangkatan() time.Time {
+func (p *PesananCustomer) AddTglKeberangkatan() string {
 	return p.TglKeberangkatan
 }
 
@@ -37,21 +37,19 @@ func main() {
 	var TglPesan time.Time
 	TglPesan = time.Now()
 
-	XX := TglPesan.Format("2006-01-02 15:04:05")
-	TglB := TglPesan.AddDate(0, 0, 7)
-	TglBerangkat := TglB.Format("2006-01-02")
-	JamB := TglB.Add(10 * time.Hour)
+	TglKeberangkatan := TglPesan.Format("2006-01-02 15:04:05")
 
-	JamBerangkat := fmt.Sprintf("%02d", JamB.Hour())
-	MenitBerangkat := fmt.Sprintf("%02d", JamB.Minute())
-	DetikBerangkat := fmt.Sprintf("%02d", JamB.Second())
-	JamKeberangkatan := JamBerangkat + ":" + MenitBerangkat + ":" + DetikBerangkat
-
-	TglPesanParsed, err := time.Parse("2006-01-02 15:04:05", XX)
+	TglPesanParsed, err := time.Parse("2006-01-02 15:04:05", TglKeberangkatan)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
+	TglBerangkat := TglPesanParsed.Format("2006-01-02")
+
+	JamBerangkat := fmt.Sprintf("%02d", TglPesanParsed.Hour())
+	MenitBerangkat := fmt.Sprintf("%02d", TglPesanParsed.Minute())
+	DetikBerangkat := fmt.Sprintf("%02d", TglPesanParsed.Second())
+	JamKeberangkatan := JamBerangkat + ":" + MenitBerangkat + ":" + DetikBerangkat
 
 	TahunPesan := TglPesanParsed.Format("2006")
 	BulanPesan := TglPesanParsed.Format("01")
@@ -62,7 +60,7 @@ func main() {
 	Detik := fmt.Sprintf("%02d", TglPesanParsed.Second())
 	JamPesanan := JamPesan + ":" + MenitPesan + ":" + Detik
 
-	TiketPesawat := PesananCustomer{"Emprit Airlines", "Jepara", "Yogyakarta", TglB, TglPesan}
+	TiketPesawat := PesananCustomer{"Emprit Airlines", "Jepara", "Yogyakarta", "2023-06-20 18:00:00", TglPesan}
 
 	fmt.Printf("Tiket Tujuan Kota %s menuju Kota %s pada tanggal %s pukul %s \n", TiketPesawat.AddKotaBerangkat(), TiketPesawat.AddKotaTujuan(), TglBerangkat, JamKeberangkatan)
 
