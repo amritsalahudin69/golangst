@@ -37,9 +37,12 @@ func main() {
 	var TglPesan time.Time
 	TglPesan = time.Now()
 
-	TglKeberangkatan := TglPesan.Format("2006-01-02 15:04:05")
+	TiketPesawat := PesananCustomer{"Emprit Airlines", "Jepara", "Yogyakarta", "2023-06-20 18:00:00", TglPesan}
 
-	TglPesanParsed, err := time.Parse("2006-01-02 15:04:05", TglKeberangkatan)
+	TglKebe := TiketPesawat.AddTglKeberangkatan()
+	//TglK := TglKebe.Format("2006-01-02 15:04:05")
+
+	TglPesanParsed, err := time.Parse("2006-01-02 15:04:05", TglKebe)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
@@ -59,8 +62,6 @@ func main() {
 	MenitPesan := fmt.Sprintf("%02d", TglPesanParsed.Minute())
 	Detik := fmt.Sprintf("%02d", TglPesanParsed.Second())
 	JamPesanan := JamPesan + ":" + MenitPesan + ":" + Detik
-
-	TiketPesawat := PesananCustomer{"Emprit Airlines", "Jepara", "Yogyakarta", "2023-06-20 18:00:00", TglPesan}
 
 	fmt.Printf("Tiket Tujuan Kota %s menuju Kota %s pada tanggal %s pukul %s \n", TiketPesawat.AddKotaBerangkat(), TiketPesawat.AddKotaTujuan(), TglBerangkat, JamKeberangkatan)
 
