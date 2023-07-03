@@ -40,7 +40,6 @@ func main() {
 	TiketPesawat := PesananCustomer{"Emprit Airlines", "Jepara", "Yogyakarta", "2023-06-20 18:00:00", TglPesan}
 
 	TglKebe := TiketPesawat.AddTglKeberangkatan()
-	//TglK := TglKebe.Format("2006-01-02 15:04:05")
 
 	TglPesanParsed, err := time.Parse("2006-01-02 15:04:05", TglKebe)
 	if err != nil {
