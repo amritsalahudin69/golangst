@@ -70,14 +70,9 @@ func main() {
 	itemJson := json.Unmarshal([]byte(items), itemN)
 	if itemJson != nil {
 		fmt.Println(itemJson)
-		//datau logic lain
 	}
 
 	productML.AddItems(itemN.Items)
-
-	// for _, muncul := range productML.items {
-	// 	fmt.Printf(productML.GetName(), productML.GetDesc(), productML.GetStartPrice(), muncul.GetItemName(), muncul.GetItemPrice())
-	// }
 
 	for _, muncul := range productML.items {
 		fmt.Printf("Name Game : %s - Descript Product: %s - Price Product: %d \n Product Items Name : %s \n Product Items Price : %d \n", productML.GetName(), productML.GetDesc(), productML.GetStartPrice(), muncul.GetItemName(), muncul.GetItemPrice())

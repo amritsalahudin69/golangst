@@ -1,0 +1,44 @@
+//Tabah Salahudin Amri
+
+CREATE DATABASE `db_order`
+    CHARACTER SET 'utf8mb4'
+    COLLATE 'utf8mb4_general_ci';
+
+USE `db_order`;
+
+CREATE TABLE `sys_user` (
+  `id` INTEGER(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `userpass` VARCHAR(70) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` INTEGER(1) DEFAULT NULL,
+  PRIMARY KEY USING BTREE (`id`)
+) ENGINE=InnoDB
+AUTO_INCREMENT=3 ROW_FORMAT=DYNAMIC CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci'
+;
+
+CREATE TABLE `sys_product` (
+  `id` INTEGER(11) NOT NULL AUTO_INCREMENT,
+  `prodname` VARCHAR(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `stok` INTEGER(11) DEFAULT NULL,
+  `price` DOUBLE DEFAULT NULL,
+  PRIMARY KEY USING BTREE (`id`)
+) ENGINE=InnoDB
+AUTO_INCREMENT=4 ROW_FORMAT=DYNAMIC CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci'
+;;
+
+CREATE TABLE `sys_order` (
+  `id` INTEGER(11) NOT NULL AUTO_INCREMENT,
+  `id_user` INTEGER(11) DEFAULT NULL,
+  `id_product` INTEGER(11) DEFAULT NULL,
+  `codebelanja` VARCHAR(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `waktubelanja` VARCHAR(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` INTEGER(1) DEFAULT NULL,
+  PRIMARY KEY USING BTREE (`id`),
+  KEY `sys_order_fk1` USING BTREE (`id_user`),
+  KEY `sys_order_fk3` USING BTREE (`id_product`),
+  CONSTRAINT `sys_order_fk1` FOREIGN KEY (`id_user`) REFERENCES `sys_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `sys_order_fk2` FOREIGN KEY (`id_product`) REFERENCES `sys_product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `sys_order_fk3` FOREIGN KEY (`id_product`) REFERENCES `sys_product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB
+AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci'
+;
