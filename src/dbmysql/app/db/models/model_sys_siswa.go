@@ -9,7 +9,7 @@ type Siswa struct {
 	Gender    string    `dbq:"jenis_kelamin"`
 }
 
-func (Siswa) GetTableNameSiswa() {
+func (Siswa) GetTableNameSiswa() string {
 	return `sys_siswa`
 }
 

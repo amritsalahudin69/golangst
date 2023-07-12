@@ -5,11 +5,11 @@ import "time"
 type Absensi struct {
 	Id       int       `dbq:"id"`
 	DateTime time.Time `dbq:"tanggal"`
-	Present  int8      `dbq:"kehadiran"`
+	Present  bool      `dbq:"kehadiran"`
 	SiswaId  int       `bdq:"id_siswa"`
 }
 
-func (Absensi) GetTableNameAbsensi() {
+func (Absensi) GetTableNameAbsensi() string {
 	return `sys_absensi`
 }
 
