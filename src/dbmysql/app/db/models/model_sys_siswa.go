@@ -13,9 +13,8 @@ func (Siswa) GetTableNameSiswa() string {
 	return `sys_siswa`
 }
 
-func ListRowsInsertSiswa() []string {
+func InsertSiswa() []string {
 	return []string{
-		"id",
 		"nama",
 		"tanggal_lahir",
 		"jenis_kelamin",
