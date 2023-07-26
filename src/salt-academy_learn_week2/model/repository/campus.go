@@ -74,7 +74,7 @@ func (c *CampusInteractor) Update(ctx context.Context, CampusId int, Campus mode
 	ctx, cancel := context.WithTimeout(ctx, 60*time.Second)
 	defer cancel()
 
-	stmt := fmt.Sprintf(`UPDATE %s SET nama = ?, email= ?,  address = ?WHERE nim = ?`, model.Campus{}.GetTableName())
+	stmt := fmt.Sprintf(`UPDATE %s SET nama = ?, email= ?,  address = ?WHERE id = ?`, model.Campus{}.GetTableName())
 	ops := &dbq.Options{SingleResult: true, ConcreteStruct: model.Campus{}, DecoderConfig: dbq.StdTimeConversionConfig()}
 
 	_, err := dbq.E(

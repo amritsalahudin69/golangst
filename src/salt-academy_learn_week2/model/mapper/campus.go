@@ -17,7 +17,6 @@ func MapperModelCampusToJson(model *model.Campus) []byte {
 		Email:   model.Email,
 		Address: model.Address,
 	}
-
 	jsonCampus, _ := json.Marshal(dataCampus)
 	return jsonCampus
 }
