@@ -9,6 +9,6 @@ type MahasiswaTemplate interface {
 	Get(ctx context.Context) (*model.Mahasiswa, error)
 	Create(ctx context.Context, Mahasiswa model.Mahasiswa) error
 	Update(ctx context.Context, NIM string, Mahasiswa model.Mahasiswa) error
-	Delete(ctx context.Context, NIM string) error
+	Delete(ctx context.Context, Nim string) error
 	GetList(ctx context.Context) ([]*model.Mahasiswa, error)
 }

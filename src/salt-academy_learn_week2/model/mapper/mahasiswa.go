@@ -11,7 +11,7 @@ type MahasiswaJSON struct {
 	BirthDate string `json:"birthDate"`
 }
 
-func MapperModelToJson(model *model.Mahasiswa) []byte {
+func MapperModelMahasiswaToJson(model *model.Mahasiswa) []byte {
 	dataMahasiswa := &MahasiswaJSON{
 		Name:      model.Name,
 		NIM:       model.NIM,
@@ -22,7 +22,7 @@ func MapperModelToJson(model *model.Mahasiswa) []byte {
 	return jsonMahasiwa
 }
 
-func MapperCollectionModelToCollectionJSON(models []*model.Mahasiswa) []byte {
+func MapperCollectionModelMahasiswaToCollectionJSON(models []*model.Mahasiswa) []byte {
 	var datas []*MahasiswaJSON
 	for _, value := range models {
 		dataMahasiswa := &MahasiswaJSON{
