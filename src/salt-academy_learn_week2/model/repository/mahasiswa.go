@@ -20,7 +20,7 @@ func NewMahasiswaRepositoryMysql(connMysql *sql.DB) repository.MahasiswaTemplate
 	return &mahasiswaInteractor{conn: connMysql}
 }
 
-func (mhs *mahasiswaInteractor) GetMahasiswa(ctx context.Context) (*model.Mahasiswa, error) {
+func (mhs *mahasiswaInteractor) Get(ctx context.Context) (*model.Mahasiswa, error) {
 	ctx, cancel := context.WithTimeout(ctx, 60*time.Second)
 	defer cancel()
 
@@ -35,7 +35,7 @@ func (mhs *mahasiswaInteractor) GetMahasiswa(ctx context.Context) (*model.Mahasi
 	return nil, errors.New("DATA EMPTY")
 }
 
-func (mhs *mahasiswaInteractor) GetListMahasiswa(ctx context.Context) ([]*model.Mahasiswa, error) {
+func (mhs *mahasiswaInteractor) GetList(ctx context.Context) ([]*model.Mahasiswa, error) {
 	ctx, cancel := context.WithTimeout(ctx, 60*time.Second)
 	defer cancel()
 
@@ -50,7 +50,7 @@ func (mhs *mahasiswaInteractor) GetListMahasiswa(ctx context.Context) ([]*model.
 	return nil, errors.New("DATA EMPTY")
 }
 
-func (mhs *mahasiswaInteractor) AddMahasiswa(ctx context.Context, Mahasiswa model.Mahasiswa) error {
+func (mhs *mahasiswaInteractor) Create(ctx context.Context, Mahasiswa model.Mahasiswa) error {
 	ctx, cancel := context.WithTimeout(ctx, 60*time.Second)
 	defer cancel()
 	stmt := fmt.Sprintf(`INSERT INTO %s (nama, tanggal_lahir, jenis_kelamin) VALUES (?, ?, ?)`, model.Mahasiswa{}.GetTableName())
@@ -69,6 +69,16 @@ func (mhs *mahasiswaInteractor) AddMahasiswa(ctx context.Context, Mahasiswa mode
 	}
 	return nil
 }
+func (mhs *mahasiswaInteractor) Update(ctx context.Context, NIM string, Mahasiswa model.Mahasiswa) error {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (mhs *mahasiswaInteractor) Delete(ctx context.Context, NIM string) error {
+	//TODO implement me
+	panic("implement me")
+}
+
 func isZero(v interface{}) bool {
 	if v == nil {
 		return true

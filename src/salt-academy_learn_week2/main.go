@@ -46,11 +46,47 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/list-mahasiswa", GetListMahasiwa).Methods(http.MethodGet)
 	r.HandleFunc("/addmahasiswa", CreateMahasiswa).Methods(http.MethodPost)
+	r.HandleFunc("/ubahmahasiswa/{id}", UpdateMahasiswa).Methods(http.MethodPut)
 	http.ListenAndServe(":8080", r)
+}
+
+func UpdateMahasiswa(w http.ResponseWriter, r *http.Request) {
+	var req request.BodyMahasiswa
+	key := mux.Vars(r)
+	param := key["id"]
+	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil {
+		responseStatusError, _ := json.Marshal(response.ResponseError{Status: response.StatusResponse{
+			Code:    1,
+			Message: "ERROR WHEN UPDATE MAHASISWA",
+		}})
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write(responseStatusError)
+		return
+	}
+	DBirth, err := time.Parse("2006-01-02", req.BirthDay)
+	if err != nil {
+		responseStatusError, _ := json.Marshal(response.ResponseError{Status: response.StatusResponse{
+			Code:    1,
+			Message: "DATE NOT MATCH",
+		}})
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write(responseStatusError)
+		return
+	}
+
+	err = repositoryMysql.Update(ctx, param, model.Mahasiswa{
+		Name:      req.Nama,
+		Gender:    req.Gender,
+		BirthDate: DBirth,
+	})
 }
 
 func CreateMahasiswa(w http.ResponseWriter, r *http.Request) {
 	var req request.BodyMahasiswa
+
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
 		responseStatusError, _ := json.Marshal(response.ResponseError{Status: response.StatusResponse{
@@ -75,7 +111,7 @@ func CreateMahasiswa(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = repositoryMysql.AddMahasiswa(ctx, model.Mahasiswa{
+	err = repositoryMysql.Create(ctx, model.Mahasiswa{
 		Name:      req.Nama,
 		Gender:    req.Gender,
 		BirthDate: DBirth,
@@ -96,7 +132,7 @@ func CreateMahasiswa(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetListMahasiwa(w http.ResponseWriter, router *http.Request) {
-	listMahasiswa, err := repositoryMysql.GetListMahasiswa(ctx)
+	listMahasiswa, err := repositoryMysql.GetList(ctx)
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

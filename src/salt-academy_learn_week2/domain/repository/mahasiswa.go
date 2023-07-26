@@ -6,7 +6,9 @@ import (
 )
 
 type MahasiswaTemplate interface {
-	GetMahasiswa(ctx context.Context) (*model.Mahasiswa, error)
-	GetListMahasiswa(ctx context.Context) ([]*model.Mahasiswa, error)
-	AddMahasiswa(ctx context.Context, Mahasiswa model.Mahasiswa) error
+	Get(ctx context.Context) (*model.Mahasiswa, error)
+	Create(ctx context.Context, Mahasiswa model.Mahasiswa) error
+	Update(ctx context.Context, NIM string, Mahasiswa model.Mahasiswa) error
+	Delete(ctx context.Context, NIM string) error
+	GetList(ctx context.Context) ([]*model.Mahasiswa, error)
 }
