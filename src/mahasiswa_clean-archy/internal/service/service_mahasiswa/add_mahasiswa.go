@@ -5,8 +5,8 @@ import (
 	"mahasiswa_clean-archy/domain/service"
 )
 
-func (mhs *mahasiswaInteractor) AddMahasiswa(ctx context.Context, Mahasiswa service.DTOASRVddMahasiswa) error {
-	newMahasiswa := service.DTOASRVddMahasiswa{
+func (mhs *mahasiswaInteractor) AddMahasiswa(ctx context.Context, Mahasiswa service.DTOARepoddMahasiswa) error {
+	newMahasiswa := service.DTOARepoddMahasiswa{
 		Name:       Mahasiswa.Name,
 		NIM:        Mahasiswa.NIM,
 		BirthPlace: Mahasiswa.BirthPlace,

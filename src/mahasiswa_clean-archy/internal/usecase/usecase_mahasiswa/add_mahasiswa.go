@@ -2,13 +2,22 @@ package usecase_mahasiswa
 
 import (
 	"context"
-	"mahasiswa_clean-archy/domain/entity"
 )
 
-func (m *mahasiswaInteractor) AddMahasiswaUC(ctx context.Context) (*entity.Mahasiswa, error) {
-	res, err := m.mahasiswaSvc.GetMahasiswa(ctx)
-	if err != nil {
-		return nil, err
+func (m *mahasiswaInteractor) AddMahasiswaUC(ctx context.Context, Mahasiswa DTOASRVddMahasiswa) error {
+	newMahasiswaUc := service.DTOASRVddMahasiswa{
+		Name:       Mahasiswa.Name,
+		NIM:        Mahasiswa.NIM,
+		BirthPlace: Mahasiswa.BirthPlace,
+		Handphone:  Mahasiswa.Handphone,
+		Gender:     Mahasiswa.Gender,
+		Address:    Mahasiswa.Address,
+		BirthDate:  Mahasiswa.BirthDate,
 	}
-	return res, nil
+	err := m.mahasiswaSvc.AddMahasiswa(ctx, newMahasiswaUc)
+	f err != nil {
+		return err
+	}
+
+	return nil
 }
