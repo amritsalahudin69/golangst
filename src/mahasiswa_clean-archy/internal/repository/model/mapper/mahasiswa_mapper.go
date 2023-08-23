@@ -2,7 +2,6 @@ package mapper
 
 import (
 	"encoding/json"
-	"mahasiswa_clean-archy/domain/entity"
 	"mahasiswa_clean-archy/internal/repository/model"
 )
 
@@ -39,37 +38,37 @@ func MapperCollectionModelToCollectionJSON(models []*model.Mahasiswa) []byte {
 	return jsonMahasiswa
 }
 
-func MapperListModelToEntityMahasiswa(models []*model.Mahasiswa) []*entity.Mahasiswa {
-	var entities []*entity.Mahasiswa
-	for _, model := range models {
-		entity, err := entity.NewMahasiswa(entity.DTOMahasiswa{
-			NameMahasiswa: model.Name,
-			Nim:           model.NIM,
-			PhoneNumber:   model.Handphone,
-			Address:       model.Address,
-			Gender:        model.Gender,
-		})
-		if err != nil {
-			return nil
-		}
-		entities = append(entities, entity)
-	}
+// func MapperListModelToEntityMahasiswa(models []*model.Mahasiswa) []*entity.Mahasiswa {
+// 	var entities []*entity.Mahasiswa
+// 	for _, model := range models {
+// 		entity, err := entity.NewMahasiswa(entity.DTOMahasiswa{
+// 			NameMahasiswa: model.Name,
+// 			Nim:           model.NIM,
+// 			PhoneNumber:   model.Handphone,
+// 			Address:       model.Address,
+// 			Gender:        model.Gender,
+// 		})
+// 		if err != nil {
+// 			return nil
+// 		}
+// 		entities = append(entities, entity)
+// 	}
 
-	return entities
-}
+// 	return entities
+// }
 
-func MapperGetModelToEntityMahasiswa(model *model.Mahasiswa) *entity.Mahasiswa {
-	var entities *entity.Mahasiswa
+// func MapperGetModelToEntityMahasiswa(model *model.Mahasiswa) *entity.Mahasiswa {
+// 	var entities *entity.Mahasiswa
 
-	entities, err := entity.NewMahasiswa(entity.DTOMahasiswa{
-		NameMahasiswa: model.Name,
-		Nim:           model.NIM,
-		PhoneNumber:   model.Handphone,
-		Address:       model.Address,
-		Gender:        model.Gender,
-	})
-	if err != nil {
-		return nil
-	}
-	return entities
-}
+// 	entities, err := entity.NewMahasiswa(entity.DTOMahasiswa{
+// 		NameMahasiswa: model.Name,
+// 		Nim:           model.NIM,
+// 		PhoneNumber:   model.Handphone,
+// 		Address:       model.Address,
+// 		Gender:        model.Gender,
+// 	})
+// 	if err != nil {
+// 		return nil
+// 	}
+// 	return entities
+// }

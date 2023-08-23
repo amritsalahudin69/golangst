@@ -17,7 +17,7 @@ type DTOASRVddMahasiswa struct {
 }
 
 type MahasiswaTemplateService interface {
-	GetMahasiswa(ctx context.Context) (*entity.Mahasiswa, error)
+	GetMahasiswa(ctx context.Context, nim string) (*entity.Mahasiswa, error)
 	GetListMahasiswa(ctx context.Context) ([]*entity.Mahasiswa, error)
 	AddMahasiswa(ctx context.Context, Mahasiswa DTOASRVddMahasiswa) error
 }

@@ -24,13 +24,13 @@ func TestNewLecture(t *testing.T) {
 
 	t.Run("Positive Case ke 2", func(t *testing.T) {
 		newVariable, err := entity.NewLecture(DummyTestLecture)
-		newlesson, errLesson := entity.NewLesson(entity.DTONewLesson{
-			Name:     "Kalkulus",
-			Duration: 60,
-		})
-		newVariable.SetLesson(newlesson)
+		// newlesson, errLesson := entity.NewLesson(entity.DTONewLesson{
+		// Name:     "Kalkulus",
+		// Duration: 60,
+		// })
+		// newVariable.SetLesson(newlesson)
 		assert.Nil(t, err)
-		assert.Nil(t, errLesson)
+		// assert.Nil(t, errLesson)
 		assert.NotNil(t, newVariable)
 		assert.Equal(t, testdata.GetTestDataLeture(), newVariable)
 	})

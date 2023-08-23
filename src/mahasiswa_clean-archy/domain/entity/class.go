@@ -6,15 +6,15 @@ import (
 )
 
 type Class struct {
-	nameClass    string
-	totalStudent string
-	statusClass  *value_object.StatusClass
+	nameClass     string
+	datamahasiswa []*Mahasiswa
+	statusClass   *value_object.StatusClass
 }
 
 type DTONewClass struct {
-	NameClass    string
-	TotalStudent string
-	StatusClass  string
+	NameClass     string
+	DataMahasiswa []*Mahasiswa
+	StatusClass   string
 }
 
 func NewClass(dto DTONewClass) (*Class, error) {
@@ -28,9 +28,9 @@ func NewClass(dto DTONewClass) (*Class, error) {
 	}
 
 	class := &Class{
-		nameClass:    dto.NameClass,
-		totalStudent: dto.TotalStudent,
-		statusClass:  statusObject,
+		nameClass:     dto.NameClass,
+		datamahasiswa: dto.DataMahasiswa,
+		statusClass:   statusObject,
 	}
 
 	return class, nil
@@ -40,8 +40,8 @@ func (c *Class) GetNameClass() string {
 	return c.nameClass
 }
 
-func (c *Class) GetTotalStudent() string {
-	return c.totalStudent
+func (c *Class) GetDataMahasiswa() []*Mahasiswa { // Ubah nama fungsi dan tipe pengembalian
+	return c.datamahasiswa
 }
 
 func (c *Class) GetStatusClass() *value_object.StatusClass {
@@ -52,8 +52,8 @@ func (c *Class) SetNameClass(nameClass string) {
 	c.nameClass = nameClass
 }
 
-func (c *Class) SetTotalStudent(totalStudent string) {
-	c.totalStudent = totalStudent
+func (c *Class) SetDataMahasiswa(datamahasiswa []*Mahasiswa) { // Ubah nama fungsi dan parameter
+	c.datamahasiswa = datamahasiswa
 }
 
 func (c *Class) SetStatusClass(statusClass *value_object.StatusClass) {

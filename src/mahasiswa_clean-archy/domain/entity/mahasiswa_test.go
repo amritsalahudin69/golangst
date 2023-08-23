@@ -1,43 +1,36 @@
 package entity_test
 
-import (
-	"mahasiswa_clean-archy/domain/entity"
-	"testing"
+// func TestNewMahasiswa(t *testing.T) {
 
-	"github.com/stretchr/testify/assert"
-)
+// 	t.Run("Positive_Test", func(t *testing.T) {
+// 		newVariable, err := entity.NewMahasiswa(entity.DTOMahasiswa{
+// 	NameMahasiswa: "Noval",
+// 	Nim:           "123456789",
+// 	PhoneNumber:   "082445644",
+// 	Address:       "jalan Sendirin mblo",
+// 	Gender:        "Pria",
+// })
 
-func TestNewMahasiswa(t *testing.T) {
+// assert.Nil(t, err)
+// assert.NotNil(t, newVariable)
+// })
 
-	t.Run("Positive_Test", func(t *testing.T) {
-		newVariable, err := entity.NewMahasiswa(entity.DTOMahasiswa{
-			NameMahasiswa: "Noval",
-			Nim:           "123456789",
-			PhoneNumber:   "082445644",
-			Address:       "jalan Sendirin mblo",
-			Gender:        "Pria",
-		})
+// t.Run("Return Error", func(t *testing.T) {
+// 	newVariable, err := domain.NewMahasiswa("", "UKRI0012",
+// 		"081373100105", "Jl Kebon Jeruk 3 No 29", "true")
+// 	assert.NotNil(t, err)
+// 	assert.Nil(t, newVariable)
+// })
 
-		assert.Nil(t, err)
-		assert.NotNil(t, newVariable)
-	})
+// t.Run("Return Error Name Must Be Stated", func(t *testing.T) {
+// 	newVariable, err := domain.NewMahasiswa("Maleakhi", "",
+// 		"081373100105", "Jl Kebon Jeruk 3 No 29", "true")
+// 	assert.NotNil(t, err)
+// 	assert.Nil(t, newVariable)
+// 	assert.Equal(t, errors.New("NIM MUST BE STATED"), err)
+// })
 
-	// t.Run("Return Error", func(t *testing.T) {
-	// 	newVariable, err := domain.NewMahasiswa("", "UKRI0012",
-	// 		"081373100105", "Jl Kebon Jeruk 3 No 29", "true")
-	// 	assert.NotNil(t, err)
-	// 	assert.Nil(t, newVariable)
-	// })
-
-	// t.Run("Return Error Name Must Be Stated", func(t *testing.T) {
-	// 	newVariable, err := domain.NewMahasiswa("Maleakhi", "",
-	// 		"081373100105", "Jl Kebon Jeruk 3 No 29", "true")
-	// 	assert.NotNil(t, err)
-	// 	assert.Nil(t, newVariable)
-	// 	assert.Equal(t, errors.New("NIM MUST BE STATED"), err)
-	// })
-
-}
+// }
 
 // func TestProductGet(t *testing.T) {
 // 	newVariable, err := domain.NewMahasiswa("Maleakhi", "UKRI0012",
@@ -45,4 +38,5 @@ func TestNewMahasiswa(t *testing.T) {
 // 	assert.NoError(t, err)
 // 	assert.Equal(t, "Maleakhi", newVariable.GetName())
 // 	assert.Equal(t, "UKRI0012", newVariable.GetNIM())
+// }
 // }

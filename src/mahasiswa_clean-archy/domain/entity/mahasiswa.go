@@ -3,35 +3,44 @@ package entity
 import (
 	"errors"
 	"mahasiswa_clean-archy/domain/value_object"
+	"time"
 )
 
 type Mahasiswa struct {
-	name        string
 	nim         string
-	phoneNumber string
+	name        string
+	phonenumber string
 	address     string
+	bachelor    *Bachelor
+	faculty     *Faculty
 	gender      *value_object.Gender
+	course      []*Course
+	joinDate    time.Time
 }
 
 type DTOMahasiswa struct {
-	NameMahasiswa string
-	Nim           string
-	PhoneNumber   string
-	Address       string
-	Gender        string
+	NIM         string
+	Name        string
+	PhoneNumber string
+	Address     string
+	Faculty     *Faculty
+	Gender      *value_object.Gender
+	JoinDate    time.Time
 }
 
 func NewMahasiswa(dto DTOMahasiswa) (*Mahasiswa, error) {
-	statusObject, err := value_object.NewGender(dto.Gender)
-	if err != nil {
-		return nil, err
-	}
+	// statusObject, err := value_object.NewGender(dto.Gender)
+	// if err != nil {
+	// 	return nil, err
+	// }
 	mahasiwa := &Mahasiswa{
-		name:        dto.NameMahasiswa,
-		nim:         dto.Nim,
-		phoneNumber: dto.PhoneNumber,
+		nim:         dto.NIM,
+		name:        dto.Name,
+		phonenumber: dto.PhoneNumber,
 		address:     dto.Address,
-		gender:      statusObject,
+		gender:      dto.Gender,
+		faculty:     dto.Faculty,
+		joinDate:    dto.JoinDate,
 	}
 
 	if mahasiwa.name == "" {
@@ -54,7 +63,7 @@ func (mhs *Mahasiswa) GetNIM() string {
 }
 
 func (mhs *Mahasiswa) GetPhonenumber() string {
-	return mhs.phoneNumber
+	return mhs.phonenumber
 }
 
 func (mhs *Mahasiswa) GetAddress() string {
@@ -74,13 +83,45 @@ func (mhs *Mahasiswa) SetNim(nim string) {
 }
 
 func (mhs *Mahasiswa) SetPhone(phoneNumber string) {
-	mhs.phoneNumber = phoneNumber
+	mhs.phonenumber = phoneNumber
 }
 
 func (mhs *Mahasiswa) SetAddress(address string) {
 	mhs.address = address
 }
 
-func (mhs *Mahasiswa) SetGender(gender *value_object.Gender) {
-	mhs.gender = gender
+func (mhs *Mahasiswa) SetGender(gender bool) (*Mahasiswa, error) {
+	datagender, err := value_object.NewGender(gender)
+	if err != nil {
+		return mhs, err
+	}
+	mhs.gender = datagender
+
+	return mhs, nil
+}
+
+func (mhs *Mahasiswa) GetFaculty() *Faculty {
+	return mhs.faculty
+}
+
+func (mhs *Mahasiswa) GetTypeBachelor() *Bachelor {
+	return mhs.bachelor
+}
+
+func (mhs *Mahasiswa) SetTypeBachelor(bachelor *Bachelor) *Mahasiswa {
+	mhs.bachelor = bachelor
+	return mhs
+}
+
+func (mhs *Mahasiswa) GetJoinDate() time.Time {
+	return mhs.joinDate
+}
+
+func (mhs *Mahasiswa) SetJoinDate(joinDate time.Time) {
+	mhs.joinDate = joinDate
+}
+
+func (mhs *Mahasiswa) AddCourses(course []*Course) *Mahasiswa {
+	mhs.course = course
+	return mhs
 }

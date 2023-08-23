@@ -1,24 +1,25 @@
 package value_object
 
-// import "errors"
+type Gender struct {
+	gender bool
+	detail string
+}
 
-// type Gender struct {
-// 	name string
-// }
+func NewGender(datagender bool) (*Gender, error) {
+	genderlist := &Gender{gender: datagender}
 
-// func NewGender(dataGender string) (*Gender, error) {
-// 	gender := &Gender{name: dataGender}
+	if genderlist.gender == false {
+		genderlist.detail = "male"
+	} else {
+		genderlist.detail = "Female"
+	}
 
-// 	if gender.name == "" {
-// 		return nil, errors.New("Gender Must State!")
-// 	}
+	return genderlist, nil
+}
+func (gbl *Gender) GetGenderBool() bool {
+	return gbl.gender
+}
 
-// 	if gender.name != "Pria" && gender.name != "Wanita" {
-// 		return nil, errors.New("Gender Not State Very Well")
-// 	}
-// 	return gender, nil
-// }
-
-// func (gnd *Gender) GetGenderName() string {
-// 	return gnd.name
-// }
+func (gbl *Gender) SetGenderBool() string {
+	return gbl.detail
+}

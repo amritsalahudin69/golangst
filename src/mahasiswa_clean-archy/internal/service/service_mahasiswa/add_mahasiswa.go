@@ -2,11 +2,16 @@ package servicemahasiswa
 
 import (
 	"context"
+	"mahasiswa_clean-archy/domain/repository"
 	"mahasiswa_clean-archy/domain/service"
+
+	"github.com/google/uuid"
 )
 
-func (mhs *mahasiswaInteractor) AddMahasiswa(ctx context.Context, Mahasiswa service.DTOARepoddMahasiswa) error {
-	newMahasiswa := service.DTOARepoddMahasiswa{
+func (mhs *mahasiswaInteractor) AddMahasiswa(ctx context.Context, Mahasiswa service.DTOASRVddMahasiswa) error {
+	Id, _ := uuid.NewUUID()
+	newMahasiswa := repository.DTOARepoddMahasiswa{
+		Id:         Id.String(),
 		Name:       Mahasiswa.Name,
 		NIM:        Mahasiswa.NIM,
 		BirthPlace: Mahasiswa.BirthPlace,

@@ -10,9 +10,8 @@ import (
 func TestNewClass(t *testing.T) {
 	t.Run("Positive Case", func(t *testing.T) {
 		newVariable, err := entity.NewClass(entity.DTONewClass{
-			NameClass:    "Golang Bacth 3",
-			TotalStudent: "15",
-			StatusClass:  "Quiz",
+			NameClass:   "Golang Bacth 3",
+			StatusClass: "Quiz",
 		})
 		assert.Nil(t, err)
 		assert.NotNil(t, newVariable)
@@ -21,9 +20,8 @@ func TestNewClass(t *testing.T) {
 	t.Run("Negative Cast", func(t *testing.T) {
 
 		newVariable, err := entity.NewClass(entity.DTONewClass{
-			NameClass:    "",
-			TotalStudent: "15",
-			StatusClass:  "Quiz",
+			NameClass:   "",
+			StatusClass: "Quiz",
 		})
 		assert.NotNil(t, err)
 		assert.Nil(t, newVariable)
